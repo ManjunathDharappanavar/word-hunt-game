@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>WordHunt Challenge</title>
+  <style>
+    body {
+      background-color: #0d0d0d;
+      color: #fff;
+      font-family: 'Segoe UI', sans-serif;
+      text-align: center;
+      padding: 50px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 30px;
+      color: #0ff;
+    }
+
+    .riddle-box {
+      display: none;
+      background: #1a1a1a;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 15px;
+      box-shadow: 0 0 10px #0ff;
+    }
+
+    .riddle-box.visible {
+      display: block;
+    }
+
+    input[type="text"] {
+      padding: 10px;
+      width: 80%;
+      margin: 10px 0;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #0ff;
+      color: #000;
+      border: none;
+      border-radius: 10px;
+      font-weight: bold;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background-color: #00cccc;
+    }
+
+    .final-text {
+      display: none;
+      margin-top: 30px;
+      font-size: 1.4rem;
+      background-color: #111;
+      color: #0f0;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px #0f0;
+    }
+
+    .final-text.visible {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <h1>🎯 WordHunt: The Code Quest</h1>
+
+  <div id="step1" class="riddle-box visible">
+    <p><strong>Riddle 1:</strong> "Thing which eliminates darkness, go to him — he is your first key. (Hint: It’s a nickname, roll no: 124)"</p>
+    <input type="text" id="code1" placeholder="Enter Code from Key Person 1">
+    <button onclick="checkCode(1)">Submit</button>
+  </div>
+
+  <div id="step2" class="riddle-box">
+    <p><strong>Riddle 2:</strong> "The person who watches anime, uses an Infinix phone, and whose favourite food is pizza — he is your next key."</p>
+    <input type="text" id="code2" placeholder="Enter Code from Key Person 2">
+    <button onclick="checkCode(2)">Submit</button>
+  </div>
+
+  <div id="step3" class="riddle-box">
+    <p><strong>Riddle 3:</strong> "He is a Free Fire player, runs a babycorn business, and is very rich — he is your final key."</p>
+    <input type="text" id="code3" placeholder="Enter Code from Key Person 3">
+    <button onclick="checkCode(3)">Submit</button>
+  </div>
+
+  <div id="final-message" class="final-text">
+    <p><strong>Final Clue:</strong> Go to the seminar hall and look behind the projector.</p>
+  </div>
+
+  <script>
+    const codes = ["1249", "5678", "9999"]; // Change these if your C programs generate different codes
+    let currentStep = 1;
+
+    function checkCode(step) {
+      const input = document.getElementById(`code${step}`).value.trim();
+      if (input === codes[step - 1]) {
+        document.getElementById(`step${step}`).classList.remove("visible");
+        currentStep++;
+        if (currentStep <= 3) {
+          document.getElementById(`step${currentStep}`).classList.add("visible");
+        } else {
+          document.getElementById("final-message").classList.add("visible");
+        }
+      } else {
+        alert("Incorrect code! Try again.");
+      }
+    }
+  </script>
+</body>
+</html>
